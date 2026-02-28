@@ -72,15 +72,15 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-                        sh 'docker tag tetrisv1 ajayab0519/tetrisv1:${BUILD_NUMBER}'
-                        sh 'docker push ajayab0519/tetrisv1:${BUILD_NUMBER}'
+                        sh 'docker tag tetrisv1 ajayab05/tetrisv1:${BUILD_NUMBER}'
+                        sh 'docker push ajayab05/tetrisv1:${BUILD_NUMBER}'
                     }
                 }
             }
         }
         stage("TRIVY Image Scan") {
             steps {
-                sh 'trivy image ajayab0519/tetrisv1:${BUILD_NUMBER} > trivyimage.txt'
+                sh 'trivy image ajayab05/tetrisv1:${BUILD_NUMBER} > trivyimage.txt'
             }
         }
         stage('Checkout Code') {
